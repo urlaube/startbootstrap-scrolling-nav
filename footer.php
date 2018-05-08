@@ -8,7 +8,16 @@
     <section id="footer" class="footer-section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12"><?= html(Themes::get(COPYRIGHT)) ?></div>
+	  <div class="col-lg-12">
+<?php
+  // output COPYRIGHT_HTML if it is set or COPYRIGHT otherwise
+  if (null !== Themes::get("COPRIGHT_HTML")) {
+    print(Themes::get(COPYRIGHT_HTML));
+  } else {
+    print(html(Themes::get(COPYRIGHT)))
+  }
+?>
+          </div>
         </div>
       </div>
     </section>

@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a0
+    @version 0.1a1
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -38,13 +38,14 @@
         Themes::preset(NAME,    "Your Website");
 
         // derived
-        Themes::preset(CANONICAL,   Main::URI());
-        Themes::preset(CHARSET,     strtolower(Main::CHARSET()));
-        Themes::preset(COPYRIGHT,   "Copyright &copy; ".Themes::get(NAME)." ".date("Y"));
-        Themes::preset(DESCRIPTION, static::getDescription());
-        Themes::preset(KEYWORDS,    static::getKeywords());
-        Themes::preset(LANGUAGE,    static::getLanguage());
-        Themes::preset(TITLE,       static::getTitle());
+        Themes::preset(CANONICAL,        Main::URI());
+        Themes::preset(CHARSET,          strtolower(Main::CHARSET()));
+	Themes::preset(COPYRIGHT,        "Copyright &copy; ".Themes::get(NAME)." ".date("Y"));
+	Themes::preset("COPYRIGHT_HTML", null);
+        Themes::preset(DESCRIPTION,      static::getDescription());
+        Themes::preset(KEYWORDS,         static::getKeywords());
+        Themes::preset(LANGUAGE,         static::getLanguage());
+        Themes::preset(TITLE,            static::getTitle());
       }
 
       protected static function doBody() {
