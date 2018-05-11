@@ -27,8 +27,7 @@
       }
 
       protected static function configureHandler() {
-        Handlers::preset(FILE_EXT,     ".md");
-        Handlers::preset(CONTENT_PATH, USER_PATH."content".DS);
+        Handlers::preset(FILE_EXT, ".md");
       }
 
       protected static function configureTheme() {
@@ -37,15 +36,17 @@
         Themes::preset(LOGO,    null);
         Themes::preset(NAME,    "Your Website");
 
-        // derived
-        Themes::preset(CANONICAL,        Main::URI());
-        Themes::preset(CHARSET,          strtolower(Main::CHARSET()));
-	Themes::preset(COPYRIGHT,        "Copyright &copy; ".Themes::get(NAME)." ".date("Y"));
+        // individual static
 	Themes::preset("COPYRIGHT_HTML", null);
-        Themes::preset(DESCRIPTION,      static::getDescription());
-        Themes::preset(KEYWORDS,         static::getKeywords());
-        Themes::preset(LANGUAGE,         static::getLanguage());
-        Themes::preset(TITLE,            static::getTitle());
+
+        // derived
+        Themes::preset(CANONICAL,   Main::URI());
+        Themes::preset(CHARSET,     strtolower(Main::CHARSET()));
+        Themes::preset(COPYRIGHT,   "Copyright &copy; ".Themes::get(NAME)." ".date("Y"));
+        Themes::preset(DESCRIPTION, static::getDescription());
+        Themes::preset(KEYWORDS,    static::getKeywords());
+        Themes::preset(LANGUAGE,    static::getLanguage());
+        Themes::preset(TITLE,       static::getTitle());
       }
 
       protected static function doBody() {
@@ -217,13 +218,13 @@
           Handlers::set(DEACTIVATE_STATICS,    true);
 
           // get folder path
-          $path = trail(Handlers::get(CONTENT_PATH).
+          $path = trail(USER_CONTENT_PATH.
                         implode(DS, array_filter(explode(US, Main::RELATIVEURI()))),
                         DS);
 
           // load content from the folder path
           $content = Files::loadContentDir($path,
-                                           Handlers::get(CONTENT_PATH),
+                                           USER_CONTENT_PATH,
                                            Handlers::get(FILE_EXT));
 
           // call theme if we found content to display
