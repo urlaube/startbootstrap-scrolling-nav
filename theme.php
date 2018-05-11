@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a2
+    @version 0.1a3
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -123,33 +123,35 @@
       }
 
       protected static function getLanguage() {
-        $result = Translations::LANGUAGE();
+        $result = strtolower(Translations::LANGUAGE());
 
-        if (1 === preg_match("@^([A-Za-z]+)\_[A-Za-z]+$@", $result, $matches)) {
+        // only take the first part if the language is of the form "ab_xy"
+        if (1 === preg_match("@^([a-z]+)\_[a-z]+$@", $result, $matches)) {
           if (2 === count($matches)) {
             $result = $matches[1];
           }
         }
-        $result = strtolower($result);
 
         return $result;
       }
 
       public static function getLogo() {
-        // retrieve site logo title
-        $result = html(Themes::get(NAME), false);
+        // retrieve site title
+        $result = html(Themes::get(NAME));
 
         // use an image as logo
         if (null !== Themes::get(LOGO)) {
-          $result = "<img src=\"".Themes::get(LOGO)."\" alt=\"".$result."\">";
+          $result = "<img src=\"".html(Themes::get(LOGO))."\" alt=\"".$result."\">";
         }
 
         return $result;
       }
 
       protected static function getTitle() {
+        // retrieve site title
         $result = Themes::get(NAME);
 
+        // prepend the heading of the current page
         if (!empty(Themes::get(HEADING))) {
           $result = Themes::get(HEADING)." | ".$result;
         }
@@ -188,7 +190,10 @@
       // RUNTIME FUNCTIONS
 
       public static function css() {
+        // preset CSS file configuration
         static::configureCSS();
+
+        // generate the CSS file output
         static::doCSS();
 
         return true;
