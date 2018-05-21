@@ -9,6 +9,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
+            <p>
 <?php
   // output COPYRIGHT_HTML if it is set or COPYRIGHT otherwise
   if (null !== Themes::get("COPYRIGHT_HTML")) {
@@ -17,6 +18,7 @@
     print(html(Themes::get(COPYRIGHT)).NL);
   }
 ?>
+            </p>
           </div>
         </div>
       </div>
