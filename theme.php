@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a3
+    @version 0.1a4
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -17,7 +17,74 @@
   if (!defined("URLAUBE")) { die(""); }
 
   if (!class_exists("StartBootstrapScrollingNav")) {
-    class StartBootstrapScrollingNav {
+    class StartBootstrapScrollingNav implements Handler, Plugin, Theme {
+
+      // INTERFACE FUNCTIONS
+
+      public static function getContent($info) {
+        $result = null;
+
+        if (is_array($info)) {
+          $name = null;
+          if (isset($info[NAME]) && is_string($info[NAME])) {
+            $name = $info[NAME];
+          }
+
+          // get folder path
+          $path = trail(USER_CONTENT_PATH.
+                        implode(DS, array_filter(explode(US, $name))),
+                        DS);
+
+          // load content from the folder path
+          $result = File::loadContentDir($path, false,
+                                         function ($content) {
+                                           $result = null;
+
+                                           // check that $content is not hidden
+                                           if (!ishidden($content)) {
+                                             $result = $content;
+                                           }
+
+                                           return $result;
+                                         },
+                                         false);
+
+          // set pagination information
+          Main::PAGEMAX(1);
+          Main::PAGEMIN(1);
+          Main::PAGENUMBER(1);
+        }
+
+        return $result;
+      }
+
+      public static function getUri($info) {
+        $result = Main::ROOTURI();
+
+        if (is_array($info)) {
+          if (isset($info[NAME]) && is_string($info[NAME])) {
+            $result .= $info[NAME];
+          }
+        }
+
+        return $result;
+      }
+
+      public static function parseUri($uri) {
+        $result = null;
+
+        if (1 === preg_match("@^\/([0-9A-Za-z\_\-\/]*)$@",
+                             $uri, $matches)) {
+          $result = array();
+
+          // get the requested content name
+          if (2 <= count($matches)) {
+            $result[NAME] = $matches[1];
+          }
+        }
+
+        return $result;
+      }
 
       // HELPER FUNCTIONS
 
@@ -26,27 +93,21 @@
         Themes::preset("light_color", "#ccc");
       }
 
-      protected static function configureHandler() {
-        Handlers::preset(FILE_EXT, ".md");
-      }
-
       protected static function configureTheme() {
         // static
-        Themes::preset(HEADING, null);
-        Themes::preset(LOGO,    null);
-        Themes::preset(NAME,    "Your Website");
+        Themes::preset(LOGO, null);
 
         // individual static
-	Themes::preset("COPYRIGHT_HTML", null);
+        Themes::preset("COPYRIGHT_HTML", null);
 
         // derived
         Themes::preset(CANONICAL,   Main::URI());
         Themes::preset(CHARSET,     strtolower(Main::CHARSET()));
-        Themes::preset(COPYRIGHT,   "Copyright &copy; ".Themes::get(NAME)." ".date("Y"));
-        Themes::preset(DESCRIPTION, static::getDescription());
-        Themes::preset(KEYWORDS,    static::getKeywords());
-        Themes::preset(LANGUAGE,    static::getLanguage());
-        Themes::preset(TITLE,       static::getTitle());
+        Themes::preset(COPYRIGHT,   "Copyright &copy; ".Main::SITENAME()." ".date("Y"));
+        Themes::preset(DESCRIPTION, static::getDefaultDescription());
+        Themes::preset(KEYWORDS,    static::getDefaultKeywords());
+        Themes::preset(LANGUAGE,    static::getDefaultLanguage());
+        Themes::preset(TITLE,       static::getDefaultTitle());
       }
 
       protected static function doBody() {
@@ -83,7 +144,7 @@
         Plugins::run(AFTER_HEAD);
       }
 
-      protected static function getDescription() {
+      protected static function getDefaultDescription() {
         $result = null;
 
         // get the first entry of the content entries
@@ -99,7 +160,7 @@
         return $result;
       }
 
-      protected static function getKeywords() {
+      protected static function getDefaultKeywords() {
         $result = null;
 
         // retrieve all words from the titles
@@ -122,7 +183,7 @@
         return $result;
       }
 
-      protected static function getLanguage() {
+      protected static function getDefaultLanguage() {
         $result = strtolower(Translations::LANGUAGE());
 
         // only take the first part if the language is of the form "ab_xy"
@@ -135,28 +196,8 @@
         return $result;
       }
 
-      public static function getLogo() {
-        // retrieve site title
-        $result = html(Themes::get(NAME));
-
-        // use an image as logo
-        if (null !== Themes::get(LOGO)) {
-          $result = "<img src=\"".html(Themes::get(LOGO))."\" alt=\"".$result."\">";
-        }
-
-        return $result;
-      }
-
-      protected static function getTitle() {
-        // retrieve site title
-        $result = Themes::get(NAME);
-
-        // prepend the heading of the current page
-        if (!empty(Themes::get(HEADING))) {
-          $result = Themes::get(HEADING)." | ".$result;
-        }
-
-        return $result;
+      protected static function getDefaultTitle() {
+        return Main::SITESLOGAN()." | ".Main::SITENAME();
       }
 
       // SOURCECODE HELPER FUNCTION
@@ -172,6 +213,18 @@
           if (Main::CONTENT()[$key]->isset($name)) {
             $result = Main::CONTENT()[$key]->get($name);
           }
+        }
+
+        return $result;
+      }
+
+      public static function getLogo() {
+        // retrieve site title
+        $result = html(Main::SITENAME());
+
+        // use an image as logo
+        if (null !== Themes::get(LOGO)) {
+          $result = "<img src=\"".html(Themes::get(LOGO))."\" alt=\"".$result."\">";
         }
 
         return $result;
@@ -200,50 +253,38 @@
       }
 
       public static function handler() {
-        // force handling of redirects
-        $result = RedirectsHandler::handle();
+        $result = false;
 
-        // force handling of static files
-        if (!$result) {
-          $result = StaticsHandler::handle();
-        }
-
-        // handle theme URIs
-        if (!$result) {
-          // preset handler configuration
-          static::configureHandler();
-
-          // deactivate other content handlers
-          Handlers::set(DEACTIVATE_ARCHIVES,   true);
-          Handlers::set(DEACTIVATE_CATEGORIES, true);
-          Handlers::set(DEACTIVATE_FEEDS,      true);
-          Handlers::set(DEACTIVATE_HOME,       true);
-          Handlers::set(DEACTIVATE_PAGES,      true);
-          Handlers::set(DEACTIVATE_REDIRECTS,  true);
-          Handlers::set(DEACTIVATE_STATICS,    true);
-
-          // get folder path
-          $path = trail(USER_CONTENT_PATH.
-                        implode(DS, array_filter(explode(US, Main::RELATIVEURI()))),
-                        DS);
-
-          // load content from the folder path
-          $content = Files::loadContentDir($path,
-                                           USER_CONTENT_PATH,
-                                           Handlers::get(FILE_EXT));
-
-          // call theme if we found content to display
-          $result = (null !== $content);
-          if ($result) {
+        $info = static::parseUri(Main::RELATIVEURI());
+        if (null !== $info) {
+          $content = static::getContent($info);
+          if (null !== $content) {
             // set the content to be processed by the theme
             Main::CONTENT($content);
+            Main::PAGEINFO($info);
 
-            // transfer the handling to the Themes class
+            // transfer the handling to the Themes class 
             Themes::run();
+
+            // we handled this page
+            $result = true;
           }
         }
 
         return $result;
+      }
+
+      public static function plugin($argument) {
+        // disable unsupported handlers
+        Handlers::set(DEACTIVATE_ARCHIVE ,    true);
+        Handlers::set(DEACTIVATE_CATEGORY,    true);
+        Handlers::set(DEACTIVATE_FEED,        true);
+        Handlers::set(DEACTIVATE_HOME,        true);
+        Handlers::set(DEACTIVATE_PAGE,        true);
+        Handlers::set(DEACTIVATE_SEARCH,      true);
+        Handlers::set(DEACTIVATE_SITEMAP_XML, true);
+
+        return null;
       }
 
       public static function theme() {
@@ -273,8 +314,16 @@
     }
 
     // register handlers
-    Handlers::register("StartBootstrapScrollingNav", "css",     "@^\/startbootstrap\-scrolling\-nav\.css$@");
-    Handlers::register("StartBootstrapScrollingNav", "handler", "@^([0-9A-Za-z\_\-\/]*)$@");
+    Handlers::register("StartBootstrapScrollingNav", "css",
+                       "@^\/startbootstrap\-scrolling\-nav\.css$@",
+                       [GET], BEFORE_ADDSLASH);
+
+    Handlers::register("StartBootstrapScrollingNav", "handler",
+                       "@^\/([0-9A-Za-z\_\-\/]*)$@",
+                       [GET], USER);
+
+    // register plugin
+    Plugins::register("StartBootstrapScrollingNav", "plugin", BEFORE_HANDLER);
 
     // register theme
     Themes::register("StartBootstrapScrollingNav", "theme", "startbootstrap-scrolling-nav");
