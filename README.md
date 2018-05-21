@@ -63,7 +63,7 @@ You can overwrite the auto-generated language:
 Config::THEME(LANGUAGE, static::getDefaultLanguage());
 ```
 
-# Title
+### Title
 You can overwrite the auto-generated title:
 ```
 Config::THEME(TITLE, static::getDefaultTitle());
