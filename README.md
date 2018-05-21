@@ -1,5 +1,5 @@
 # StartBootstrap-Scrolling-Nav theme
-The StartBootstrap-Scrolling-Nav theme is a single-page theme for [Urlaub.be](https://github.com/urlaube/base) that is based on the [Scrolling-Nav theme](https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/tree/v3.3.7) created by [Start Bootstrap](https://startbootstrap.com/).
+The StartBootstrap-Scrolling-Nav theme is a single-page theme for [Urlaub.be](https://github.com/urlaube/urlaube) that is based on the [Scrolling-Nav theme](https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/tree/v3.3.7) created by [Start Bootstrap](https://startbootstrap.com/).
 
 ## Installation
 Place the folder containing the theme into your themes directory located at `./user/themes/`.
