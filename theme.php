@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a4
+    @version 0.1a5
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -277,6 +277,7 @@
       public static function plugin($argument) {
         // disable unsupported handlers
         Handlers::set(DEACTIVATE_ARCHIVE ,    true);
+        Handlers::set(DEACTIVATE_AUTHOR,      true);
         Handlers::set(DEACTIVATE_CATEGORY,    true);
         Handlers::set(DEACTIVATE_FEED,        true);
         Handlers::set(DEACTIVATE_HOME,        true);

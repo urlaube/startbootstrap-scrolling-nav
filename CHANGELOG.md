@@ -1,8 +1,12 @@
 # Changelog
 
+## 0.1a5 (26.05.2018)
+### Features
+* updated code to match current alpha state of Urlaube core
+
 ## 0.1a4 (21.05.2018)
 ### Features
-* updated code to match current alpha-state of Urlau.be core
+* updated code to match current alpha-state of Urlaube core
 * added CHANGELOG file
 * added README file
 
