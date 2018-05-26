@@ -8,7 +8,7 @@
     <section id="empty" class="empty-section">
     </section>
 <?php
-  // iterate through the content entries to generate the link bar
+  // iterate through the content entries
   $even = false;
   foreach (Main::CONTENT() as $content_key => $content_item) {
     // chose alternating CSS class
