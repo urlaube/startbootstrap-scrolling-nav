@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1a6 (27.05.2019)
+### Features
+* introduced support for feed URIs
+* removed unnecessary methods
+
 ## 0.1a5 (26.05.2018)
 ### Features
 * updated code to match current alpha state of Urlaube core

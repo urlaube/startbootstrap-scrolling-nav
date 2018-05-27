@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a5
+    @version 0.1a6
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -95,15 +95,17 @@
 
       protected static function configureTheme() {
         // static
+        Themes::preset(FAVICON,    null);
         Themes::preset(LOGO, null);
 
         // individual static
         Themes::preset("COPYRIGHT_HTML", null);
 
         // derived
-        Themes::preset(CANONICAL,   Main::URI());
-        Themes::preset(CHARSET,     strtolower(Main::CHARSET()));
-        Themes::preset(COPYRIGHT,   "Copyright &copy; ".Main::SITENAME()." ".date("Y"));
+        Themes::preset(AUTHOR,      static::getDefaultAuthor());
+        Themes::preset(CANONICAL,   static::getDefaultCanonical());
+        Themes::preset(CHARSET,     static::getDefaultCharset());
+        Themes::preset(COPYRIGHT,   static::getDefaultCopyright());
         Themes::preset(DESCRIPTION, static::getDefaultDescription());
         Themes::preset(KEYWORDS,    static::getDefaultKeywords());
         Themes::preset(LANGUAGE,    static::getDefaultLanguage());
@@ -144,6 +146,32 @@
         Plugins::run(AFTER_HEAD);
       }
 
+      protected static function getDefaultAuthor() {
+        $result = null;
+
+        // try to retrieve the first author
+        foreach (Main::CONTENT() as $content_item) {
+          if ($content_item->isset(AUTHOR)) {
+            $result = $content_item->get(AUTHOR);
+            break;
+          }
+        }
+
+        return $result;
+      }
+
+      protected static function getDefaultCanonical() {
+        return Main::URI();
+      }
+
+      protected static function getDefaultCharset() {
+        return strtolower(Main::CHARSET());
+      }
+
+      protected static function getDefaultCopyright() {
+        return "Copyright &copy;".SP.Main::SITENAME().SP.date("Y");
+      }
+
       protected static function getDefaultDescription() {
         $result = null;
 
@@ -152,7 +180,7 @@
           if (Main::CONTENT()[0]->isset(CONTENT)) {
             // remove all HTML tags and replace line breaks with spaces
             $result = substr(strtr(strip_tags(Main::CONTENT()[0]->get(CONTENT)),
-                                   array("\r\n" => " ", "\n" => " ", "\r" => " ")),
+                                   array("\r\n" => SP, "\n" => SP, "\r" => SP)),
                              0, 300);
           }
         }
@@ -167,7 +195,7 @@
         $words = array();
         foreach (Main::CONTENT() as $content_item) {
           if ($content_item->isset(TITLE)) {
-            $words = array_merge($words, explode(" ", $content_item->get(TITLE)));
+            $words = array_merge($words, explode(SP, $content_item->get(TITLE)));
           }
         }
 
@@ -178,7 +206,7 @@
           }
         }
 
-        $result = implode(", ", $words);
+        $result = implode(",".SP, $words);
 
         return $result;
       }
@@ -197,47 +225,13 @@
       }
 
       protected static function getDefaultTitle() {
-        return Main::SITESLOGAN()." | ".Main::SITENAME();
+        return Main::SITESLOGAN().SP."|".SP.Main::SITENAME();
       }
 
       // SOURCECODE HELPER FUNCTION
 
       public static function cleanString($string) {
         return preg_replace('@[^0-9a-z]@', '', strtolower($string));
-      }
-
-      public static function get($key, $name) {
-        $result = null;
-
-        if (array_key_exists($key, Main::CONTENT())) {
-          if (Main::CONTENT()[$key]->isset($name)) {
-            $result = Main::CONTENT()[$key]->get($name);
-          }
-        }
-
-        return $result;
-      }
-
-      public static function getLogo() {
-        // retrieve site title
-        $result = html(Main::SITENAME());
-
-        // use an image as logo
-        if (null !== Themes::get(LOGO)) {
-          $result = "<img src=\"".html(Themes::get(LOGO))."\" alt=\"".$result."\">";
-        }
-
-        return $result;
-      }
-
-      public static function isset($key, $name) {
-        $result = false;
-
-        if (array_key_exists($key, Main::CONTENT())) {
-          $result = Main::CONTENT()[$key]->isset($name);
-        }
-
-        return $result;
       }
 
       // RUNTIME FUNCTIONS

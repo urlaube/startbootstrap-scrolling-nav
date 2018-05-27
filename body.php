@@ -10,7 +10,7 @@
 <?php
   // iterate through the content entries
   $even = false;
-  foreach (Main::CONTENT() as $content_key => $content_item) {
+  foreach (Main::CONTENT() as $content_item) {
     // chose alternating CSS class
     if ($even) {
       $class = "even-section";
@@ -19,8 +19,8 @@
     }
     $even = (!$even);
 
-    $content = StartBootstrapScrollingNav::get($content_key, CONTENT).NL;
-    $title   = StartBootstrapScrollingNav::get($content_key, TITLE);
+    $content = $content_item->get(CONTENT).NL;
+    $title   = $content_item->get(TITLE);
     $id      = StartBootstrapScrollingNav::cleanString($title);
 ?>
     <!-- <?= html($title); ?> Section -->

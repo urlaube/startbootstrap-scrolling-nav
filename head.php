@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
-  if (Themes::isset(AUTHOR)) {
+  if (null !== Themes::get(AUTHOR)) {
 ?>
     <meta name="author" content="<?= html(Themes::get(AUTHOR)) ?>">
 <?php
@@ -23,7 +23,7 @@
 
     <link rel="canonical" href="<?= html(Themes::get(CANONICAL)) ?>">
 <?php
-  if (Themes::isset(FAVICON)) {
+  if (null !== Themes::get(FAVICON)) {
 ?>
     <link rel="shortcut icon" type="image/x-icon" href="<?= html(Themes::get(FAVICON)) ?>">
 <?php
@@ -56,7 +56,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand page-scroll" href="#page-top"><?= StartBootstrapScrollingNav::getLogo() ?></a>
+          <a class="navbar-brand page-scroll" href="<?= html(Main::ROOTURI()) ?>">
+<?php
+  if (null !== Themes::get(LOGO)) {
+?>
+            <img src="<?= html(Themes::get(LOGO)) ?>" alt="<?= html(Main::SITENAME()) ?>">
+<?php
+  } else {
+?>
+            <?= html(Main::SITENAME().NL) ?>
+<?php
+  }
+?>
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,8 +80,8 @@
             </li>
 <?php
   // iterate through the content entries to generate the link bar
-  foreach (Main::CONTENT() as $content_key => $content_item) {
-    $title = StartBootstrapScrollingNav::get($content_key, TITLE);
+  foreach (Main::CONTENT() as $content_item) {
+    $title = $content_item->get(TITLE);
     $id    = StartBootstrapScrollingNav::cleanString($title);
 ?>
             <li>

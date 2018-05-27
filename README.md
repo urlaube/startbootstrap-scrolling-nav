@@ -18,6 +18,12 @@ Config::THEME("dark_color",  "#666");
 Config::THEME("light_color", "#ccc");
 ```
 
+### Favicon URL
+You can set the URL of the favicon:
+```
+Config::THEME(FAVICON, null);
+```
+
 ### Logo image file
 You can set the following value to choose an image file as a logo:
 ```
@@ -27,22 +33,28 @@ Config::THEME(LOGO, null);
 ### Copyright text
 You can set the following values to change the copyright text in the footer area. You can either choose auto-escaped text by setting `COPYRIGHT` or you can choose HTML by setting `"COPYRIGHT_HTML"`:
 ```
-Config::THEME(COPYRIGHT, "Copyright &copy; ".Main::SITENAME()." ".date("Y"));
+Config::THEME(COPYRIGHT, static::getDefaultCopyright());
 ```
 ```
 Config::THEME("COPYRIGHT_HTML", null);
 ```
 
+### Author name
+You can overwrite the auto-generated author header:
+```
+Config::THEME(AUTHOR, $static::getDefaultAuthor());
+```
+
 ### Canonical URL
 You can overwrite the auto-generated canonical URL:
 ```
-Config::THEME(CANONICAL, Main::URI());
+Config::THEME(CANONICAL, static::getDefaultCanonical());
 ```
 
 ### Charset
 You can overwrite the auto-generated charset:
 ```
-Config::THEME(CHARSET, strtolower(Main::CHARSET()));
+Config::THEME(CHARSET, static::getDefaultCharset());
 ```
 
 ### Description
