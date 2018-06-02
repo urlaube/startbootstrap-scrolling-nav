@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1a7 (02.06.2018)
+### Features
+* prevent instantiation
+
 ## 0.1a6 (27.05.2019)
 ### Features
 * introduced support for feed URIs
