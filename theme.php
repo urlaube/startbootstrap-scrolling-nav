@@ -41,7 +41,7 @@
                                            $result = null;
 
                                            // check that $content is not hidden
-                                           if (!ishidden($content)) {
+                                           if (!istrue(value($content, HIDDEN))) {
                                              $result = $content;
                                            }
 
