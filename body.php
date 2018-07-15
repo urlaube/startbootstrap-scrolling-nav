@@ -19,8 +19,8 @@
     }
     $even = (!$even);
 
-    $content = $content_item->get(CONTENT).NL;
-    $title   = $content_item->get(TITLE);
+    $content = value($content_item, CONTENT).NL;
+    $title   = value($content_item, TITLE);
     $id      = StartBootstrapScrollingNav::cleanString($title);
 ?>
     <!-- <?= html($title); ?> Section -->

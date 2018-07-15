@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a7
+    @version 0.1a8
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -152,7 +152,7 @@
         // try to retrieve the first author
         foreach (Main::CONTENT() as $content_item) {
           if ($content_item->isset(AUTHOR)) {
-            $result = $content_item->get(AUTHOR);
+            $result = value($content_item, AUTHOR);
             break;
           }
         }
@@ -179,7 +179,7 @@
         if (0 < count(Main::CONTENT())) {
           if (Main::CONTENT()[0]->isset(CONTENT)) {
             // remove all HTML tags and replace line breaks with spaces
-            $result = substr(strtr(strip_tags(Main::CONTENT()[0]->get(CONTENT)),
+            $result = substr(strtr(strip_tags(value(Main::CONTENT()[0], CONTENT)),
                                    array("\r\n" => SP, "\n" => SP, "\r" => SP)),
                              0, 300);
           }
@@ -195,7 +195,7 @@
         $words = array();
         foreach (Main::CONTENT() as $content_item) {
           if ($content_item->isset(TITLE)) {
-            $words = array_merge($words, explode(SP, $content_item->get(TITLE)));
+            $words = array_merge($words, explode(SP, value($content_item, TITLE)));
           }
         }
 

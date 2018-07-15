@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1a8 (15.07.2018)
+### Features
+* rewrote to use the new `value()` function of the Urlaube core
+
 ## 0.1a7 (02.06.2018)
 ### Features
 * prevent instantiation
