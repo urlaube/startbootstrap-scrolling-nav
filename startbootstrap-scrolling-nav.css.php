@@ -155,11 +155,11 @@ section p a:hover {
   color          : #eeeeee !important;
   padding-bottom : 50px !important;
   padding-top    : 50px !important;
-  text-align     : center !important;
 }
 
 .footer-section p {
-  font-size : 14px !important;
+  font-size  : 14px !important;
+  text-align : center !important;
 }
 
 .footer-section p a {
