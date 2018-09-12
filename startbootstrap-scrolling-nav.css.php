@@ -151,11 +151,16 @@ section p a:hover {
 }
 
 .footer-section {
-  background     : <?= html(Themes::get("dark_color")) ?>;
-  color          : #eeeeee;
-  padding-bottom : 50px;
-  padding-top    : 50px;
-  text-align     : center;
+  background     : <?= html(Themes::get("dark_color")) ?> !important;
+  color          : #eeeeee !important;
+  font-size      : 10px !important;
+  padding-bottom : 50px !important;
+  padding-top    : 50px !important;
+  text-align     : center !important;
+}
+
+.footer-section a {
+  color : #337ab7 !important;
 }
 
 .hidden-border {
