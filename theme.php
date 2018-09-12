@@ -6,7 +6,7 @@
     This file contains the theme class of the StartBootstrap-Scrolling-Nav theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a8
+    @version 0.1a9
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */

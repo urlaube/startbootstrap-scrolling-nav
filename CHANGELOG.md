@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1a9 (12.09.2018)
+### Features
+* optimized look of the theme
+
 ## 0.1a8 (15.07.2018)
 ### Features
 * rewrote to use the new `value()` function of the Urlaube core

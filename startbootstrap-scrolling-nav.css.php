@@ -56,7 +56,7 @@ html {
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li>a:hover {
-  color : #bbb;
+  color : #bbbbbb;
 }
 
 .navbar-default .navbar-nav>.active>a,
@@ -68,6 +68,28 @@ html {
 
 section h1 {
   text-align : center;
+}
+
+section h1 a,
+section h2 a,
+section h3 a,
+section h4 a,
+section h5 a {
+  color       : #000000;
+  font-weight : bold;
+}
+
+section h1 a:focus,
+section h1 a:hover,
+section h2 a:focus,
+section h2 a:hover,
+section h3 a:focus,
+section h3 a:hover,
+section h4 a:focus,
+section h4 a:hover,
+section h5 a:focus,
+section h5 a:hover {
+  color : <?= html(Themes::get("dark_color")) ?>;
 }
 
 section img {
@@ -94,7 +116,18 @@ section ul {
 }
 
 section p {
-  display : block;
+  display    : block;
+  font-size  : 18px;
+  text-align : justify;
+}
+
+section p a {
+  color : <?= html(Themes::get("dark_color")) ?>;
+}
+
+section p a:focus,
+section p a:hover {
+  color : #000000;
 }
 
 .empty-section {
