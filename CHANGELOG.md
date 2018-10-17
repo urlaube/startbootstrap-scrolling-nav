@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1a11 (17.10.2018)
+### Bugfixes
+* only execute the `FILTER_HANDLERS` plugin when this is the active theme
+
 ## 0.1a10 (17.10.2018)
 ### Features
 * updated theme to be compatible with Urlaube 0.1a7

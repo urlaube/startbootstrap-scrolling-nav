@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a10
+    @version 0.1a11
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -302,29 +302,33 @@
     }
 
     public static function plugin($argument) {
-      $result = preparecontent($argument, null, [Plugins::ENTITY]);
+      $result = $argument;
 
-      if (null !== $result) {
-        // make sure that we only handle arrays
-        if ($result instanceof Content) {
-          $result = [$result];
-        }
+      // only proceed when this is the active theme
+      if (0 === strcasecmp(static::class, value(Main::class, THEMENAME))) {
+        $result = preparecontent($result, null, [Plugins::ENTITY]);
+        if (null !== $result) {
+          // make sure that we only handle arrays
+          if ($result instanceof Content) {
+            $result = [$result];
+          }
 
-        $unsupported = [ArchiveHandler::class,
-                        AuthorHandler::class,
-                        CategoryHandler::class,
-                        FeedHandler::class,
-                        PageHandler::class,
-                        SearchHandler::class,
-                        SitemapXmlHandler::class];
+          $unsupported = [ArchiveHandler::class,
+                          AuthorHandler::class,
+                          CategoryHandler::class,
+                          FeedHandler::class,
+                          PageHandler::class,
+                          SearchHandler::class,
+                          SitemapXmlHandler::class];
 
-        // iterate through the handlers and unset unsupported ones
-        foreach ($result as $key => $value) {
-          if (in_array(value($value, Plugins::ENTITY), $unsupported)) {
-            unset($result[$key]);
+          // iterate through the handlers and unset unsupported ones
+          foreach ($result as $key => $value) {
+            if (in_array(value($value, Plugins::ENTITY), $unsupported)) {
+              unset($result[$key]);
+            }
           }
         }
-      } 
+      }
 
       return $result;
     }
