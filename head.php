@@ -5,38 +5,38 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="<?= html(Themes::get(LANGUAGE)) ?>">
+<html lang="<?= html(value(Themes::class, LANGUAGE)) ?>">
   <head>
-    <meta charset="<?= html(Themes::get(CHARSET)) ?>">
+    <meta charset="<?= html(value(Themes::class, CHARSET)) ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
-  if (null !== Themes::get(AUTHOR)) {
+  if (null !== value(Themes::class, AUTHOR)) {
 ?>
-    <meta name="author" content="<?= html(Themes::get(AUTHOR)) ?>">
+    <meta name="author" content="<?= html(value(Themes::class, AUTHOR)) ?>">
 <?php
   }
 ?>
-    <meta name="description" content="<?= html(Themes::get(DESCRIPTION)) ?>">
-    <meta name="keywords" content="<?= html(Themes::get(KEYWORDS)) ?>">
+    <meta name="description" content="<?= html(value(Themes::class, DESCRIPTION)) ?>">
+    <meta name="keywords" content="<?= html(value(Themes::class, KEYWORDS)) ?>">
 
-    <link rel="canonical" href="<?= html(Themes::get(CANONICAL)) ?>">
+    <link rel="canonical" href="<?= html(value(Themes::class, CANONICAL)) ?>">
 <?php
-  if (null !== Themes::get(FAVICON)) {
+  if (null !== value(Themes::class, FAVICON)) {
 ?>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= html(Themes::get(FAVICON)) ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= html(value(Themes::class, FAVICON)) ?>">
 <?php
   }
 ?>
 
-    <title><?= html(Themes::get(TITLE)) ?></title>
+    <title><?= html(value(Themes::class, TITLE)) ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= html(path2uri(__DIR__."/css/bootstrap.min.css")) ?>" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<?= html(Main::ROOTURI()."startbootstrap-scrolling-nav.css") ?>" rel="stylesheet">
+    <link href="<?= html(static::getUriCss(new Content())) ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,15 +56,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand page-scroll" href="<?= html(Main::ROOTURI()) ?>">
+          <a class="navbar-brand page-scroll" href="<?= html(value(Main::class, ROOTURI)) ?>">
 <?php
-  if (null !== Themes::get(LOGO)) {
+  if (null !== value(Themes::class, LOGO)) {
 ?>
-            <img src="<?= html(Themes::get(LOGO)) ?>" alt="<?= html(Main::SITENAME()) ?>">
+            <img src="<?= html(value(Themes::class, LOGO)) ?>" alt="<?= html(value(Themes::class, SITENAME)) ?>">
 <?php
   } else {
 ?>
-            <?= html(Main::SITENAME().NL) ?>
+            <?= html(value(Themes::class, SITENAME).NL) ?>
 <?php
   }
 ?>
@@ -80,8 +80,8 @@
             </li>
 <?php
   // iterate through the content entries to generate the link bar
-  foreach (Main::CONTENT() as $content_item) {
-    $title = $content_item->get(TITLE);
+  foreach (value(Main::class, CONTENT) as $content_item) {
+    $title = value($content_item, TITLE);
     $id    = StartBootstrapScrollingNav::cleanString($title);
 ?>
             <li>

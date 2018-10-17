@@ -10,7 +10,7 @@
 <?php
   // iterate through the content entries
   $even = false;
-  foreach (Main::CONTENT() as $content_item) {
+  foreach (value(Main::class, CONTENT) as $content_item) {
     // chose alternating CSS class
     if ($even) {
       $class = "even-section";

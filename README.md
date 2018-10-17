@@ -3,9 +3,10 @@ The StartBootstrap-Scrolling-Nav theme is a single-page theme for [Urlaube](http
 
 ## Installation
 Place the folder containing the theme into your themes directory located at `./user/themes/`.
+
 Finally, add the following line to your configuration file located at `./user/config/config.php` to select the theme:
 ```
-Config::THEMENAME("startbootstrap-scrolling-nav");
+Main::set(THEMENAME, StartbootstrapScrollingNav::class);
 ```
 
 ## Configuration
@@ -14,70 +15,87 @@ To configure the theme you can change the corresponding settings in your configu
 ### Colors
 You can set the following values to change the color scheme of the theme:
 ```
-Config::THEME("dark_color",  "#666");
-Config::THEME("light_color", "#ccc");
-```
-
-### Favicon URL
-You can set the URL of the favicon:
-```
-Config::THEME(FAVICON, null);
-```
-
-### Logo image file
-You can set the following value to choose an image file as a logo:
-```
-Config::THEME(LOGO, null);
-```
-
-### Copyright text
-You can set the following values to change the copyright text in the footer area. You can either choose auto-escaped text by setting `COPYRIGHT` or you can choose HTML by setting `"COPYRIGHT_HTML"`:
-```
-Config::THEME(COPYRIGHT, static::getDefaultCopyright());
-```
-```
-Config::THEME("COPYRIGHT_HTML", null);
+Themes::set("dark_color",  "#666");
+Themes::set("light_color", "#ccc");
 ```
 
 ### Author name
 You can overwrite the auto-generated author header:
 ```
-Config::THEME(AUTHOR, $static::getDefaultAuthor());
+Themes::set(AUTHOR, $static::getDefaultAuthor());
 ```
 
 ### Canonical URL
-You can overwrite the auto-generated canonical URL:
+You can overwrite the auto-generated canonical URL header:
 ```
-Config::THEME(CANONICAL, static::getDefaultCanonical());
+Themes::set(CANONICAL, static::getDefaultCanonical());
 ```
 
 ### Charset
-You can overwrite the auto-generated charset:
+You can overwrite the auto-generated charset header:
 ```
-Config::THEME(CHARSET, static::getDefaultCharset());
+Themes::set(CHARSET, static::getDefaultCharset());
+```
+
+### Copyright text
+You can set the following values to change the copyright text in the footer area. You can either choose auto-escaped text by setting `COPYRIGHT` or you can choose HTML by setting `"copyright_html"`:
+```
+Themes::set(COPYRIGHT, static::getDefaultCopyright());
+```
+```
+Themes::set("copyright_html", null);
 ```
 
 ### Description
-You can overwrite the auto-generated description:
+You can overwrite the auto-generated description header:
 ```
-Config::THEME(DESCRIPTION, static::getDefaultDescription());
+Themes::set(DESCRIPTION, static::getDefaultDescription());
+```
+
+### Favicon URL
+You can set the URL of the favicon:
+```
+Themes::set(FAVICON, null);
 ```
 
 ### Keywords
-You can overwrite the auto-generated keywords:
+You can overwrite the auto-generated keywords header:
 ```
-Config::THEME(KEYWORDS, static::getDefaultKeywords());
+Themes::set(KEYWORDS, static::getDefaultKeywords());
 ```
 
 ### Language
-You can overwrite the auto-generated language:
+You can overwrite the auto-generated language header:
 ```
-Config::THEME(LANGUAGE, static::getDefaultLanguage());
+Themes::set(LANGUAGE, static::getDefaultLanguage());
+```
+
+### Logo image file
+You can set the URL of an image file that is used as a website logo:
+```
+Themes::set(LOGO, null);
+```
+
+### Pagename
+You can overwrite the auto-generated page name that is used as an H1 headline:
+```
+Themes::set(PAGENAME, static::getDefaultPagename());
+```
+
+### Sitename
+You can overwrite the preset site name that is used a text logo and in the auto-generated title header:
+```
+Themes::set(SITENAME, t("Deine Webseite", static::class));
+```
+
+### Siteslogan
+You can overwrite the preset site slogan that is used in the auto-generated title header:
+```
+Themes::set(SITESLOGAN, t("Dein Slogan", static::class));
 ```
 
 ### Title
-You can overwrite the auto-generated title:
+You can overwrite the auto-generated title header:
 ```
-Config::THEME(TITLE, static::getDefaultTitle());
+Themes::set(TITLE, static::getDefaultTitle());
 ```
-
