@@ -156,7 +156,7 @@
         if (value(Main::class, CONTENT)[0]->isset(CONTENT)) {
           // remove all HTML tags and replace line breaks with spaces
           $result = substr(strtr(strip_tags(value(value(Main::class, CONTENT)[0], CONTENT)),
-                                 array("\r\n" => SP, "\n" => SP, "\r" => SP)),
+                                 ["\r\n" => SP, "\n" => SP, "\r" => SP]),
                            0, 300);
         }
       }
@@ -168,7 +168,7 @@
       $result = null;
 
       // retrieve all words from the titles
-      $words = array();
+      $words = [];
       foreach (value(Main::class, CONTENT) as $content_item) {
         if ($content_item->isset(TITLE)) {
           $words = array_merge($words, explode(SP, value($content_item, TITLE)));
