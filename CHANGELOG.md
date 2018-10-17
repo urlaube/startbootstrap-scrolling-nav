@@ -3,6 +3,7 @@
 ## 0.1a11 (17.10.2018)
 ### Bugfixes
 * only execute the `FILTER_HANDLERS` plugin when this is the active theme
+* improve how code blocks look like
 
 ## 0.1a10 (17.10.2018)
 ### Features
