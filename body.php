@@ -23,7 +23,7 @@
     $title   = value($content_item, TITLE);
     $id      = StartBootstrapScrollingNav::cleanString($title);
 ?>
-    <!-- <?= html($title); ?> Section -->
+    <!-- <?= html($title) ?> Section -->
     <section id="<?= html($id) ?>" class="<?= html($class) ?>">
       <div class="container">
         <div class="row">
