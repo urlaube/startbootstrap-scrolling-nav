@@ -4,6 +4,9 @@
 ### Features
 * zoom in/out of the menu logo when the menu bar is expanded/collapse
 
+### Bugfixes
+* fixed line breaks and trailing whitspace
+
 ## 0.1a11 (17.10.2018)
 ### Bugfixes
 * only execute the `FILTER_HANDLERS` plugin when this is the active theme
