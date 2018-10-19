@@ -6,6 +6,7 @@
 
 ### Bugfixes
 * fixed line breaks and trailing whitspace
+* clicking on the logo now scrolls to the top of the page instead of reloading it
 
 ## 0.1a11 (17.10.2018)
 ### Bugfixes

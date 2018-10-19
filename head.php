@@ -56,7 +56,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand page-scroll" href="<?= html(value(Main::class, ROOTURI)) ?>">
+          <a class="navbar-brand page-scroll" href="#empty">
 <?php
   if (null !== value(Themes::class, LOGO)) {
 ?>
