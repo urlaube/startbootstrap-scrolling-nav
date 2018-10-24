@@ -7,6 +7,7 @@
 ### Bugfixes
 * fixed line breaks and trailing whitspace
 * clicking on the logo now scrolls to the top of the page instead of reloading it
+* headline in list now has same font-weight as on single page
 
 ## 0.1a11 (17.10.2018)
 ### Bugfixes
