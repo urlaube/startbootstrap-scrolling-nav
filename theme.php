@@ -34,27 +34,34 @@
     // ABSTRACT FUNCTIONS
 
     protected static function getResult($metadata, &$cachable) {
-      // this result may be cached
-      $cachable = true;
+      $result = null;
 
-      $name = value($metadata, static::NAME);
-      $path = trail(USER_CONTENT_PATH.implode(DS, array_filter(explode(US, $name))), DS);
+      // only proceed when this is the active theme
+      if (0 === strcasecmp(static::class, value(Main::class, THEMENAME))) {
+        // this result may be cached
+        $cachable = true;
 
-      return FilePlugin::loadContentDir($path, false,
-                                        function ($content) {
-                                          $result = null;
+        $name = value($metadata, static::NAME);
+        $path = trail(USER_CONTENT_PATH.implode(DS, array_filter(explode(US, $name))), DS);
 
-                                          // check that $content is not hidden
-                                          if (!istrue(value($content, HIDDEN))) {
-                                            // check that $content is not a relocation
-                                            if (null === value($content, RELOCATE)) {
-                                              $result = $content;
-                                            }
-                                          }
+        $result = FilePlugin::loadContentDir($path, false,
+                                             function ($content) {
+                                               $result = null;
 
-                                          return $result;
-                                        },
-                                        false);
+                                               // check that $content is not hidden
+                                               if (!istrue(value($content, HIDDEN))) {
+                                                 // check that $content is not a relocation
+                                                 if (null === value($content, RELOCATE)) {
+                                                   $result = $content;
+                                                 }
+                                               }
+
+                                               return $result;
+                                             },
+                                             false);
+      }
+
+      return $result;
     }
 
     protected static function prepareMetadata($metadata) {
