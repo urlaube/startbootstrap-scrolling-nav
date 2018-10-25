@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a12
+    @version 0.1a13
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -28,16 +28,17 @@
     const REGEX     = "~^\/".
                       "(?P<name>[0-9A-Za-z\_\-\/]*)".
                       "$~";
-    const REGEXCSS  = "~^\/startbootstrap\-scrolling\-nav\.css$~";
+
+    const REGEXCSS = "~^\/startbootstrap\-scrolling\-nav\.css$~";
 
     // ABSTRACT FUNCTIONS
 
-    protected static function getResult($metadata) {
-      $name = value($metadata, static::NAME);
+    protected static function getResult($metadata, &$cachable) {
+      // this result may be cached
+      $cachable = true;
 
-      $path = trail(USER_CONTENT_PATH.
-                    implode(DS, array_filter(explode(US, $name))),
-                    DS);
+      $name = value($metadata, static::NAME);
+      $path = trail(USER_CONTENT_PATH.implode(DS, array_filter(explode(US, $name))), DS);
 
       return FilePlugin::loadContentDir($path, false,
                                         function ($content) {
@@ -56,17 +57,28 @@
                                         false);
     }
 
+    protected static function prepareMetadata($metadata) {
+      $metadata->set(static::NAME, trail(lead(value($metadata, static::NAME), US), US));
+
+      return $metadata;
+    }
+
     // overwrite the default behaviour
     public static function getUri($metadata) {
       $result = null;
 
+      // prepare metadata for sanitization
       $metadata = preparecontent($metadata, static::OPTIONAL, static::MANDATORY);
       if ($metadata instanceof Content) {
-        // get the base URI
-        $result = value(Main::class, ROOTURI);
+        // sanitize metadata
+        $metadata = preparecontent(static::prepareMetadata($metadata), static::OPTIONAL, static::MANDATORY);
+        if ($metadata instanceof Content) {
+          // get the base URI
+          $result = value(Main::class, ROOTURI);
 
-        // append the mandatory URI parts
-        $result .= trail(value($metadata, static::NAME), US);
+          // append the mandatory URI parts
+          $result .= nolead(value($metadata, static::NAME), US);
+        }
       }
 
       return $result;

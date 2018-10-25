@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1a13 (25.10.2018)
+### Features
+* updated theme to be compatible with Urlaube 0.1a8
+
 ## 0.1a12 (19.10.2018)
 ### Features
 * zoom in/out of the menu logo when the menu bar is expanded/collapse
