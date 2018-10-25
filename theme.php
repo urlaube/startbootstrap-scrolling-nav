@@ -258,7 +258,7 @@
     }
 
     protected static function getDefaultTitle() {
-      $result = value(Themes::class, SITESLOGAN).SP."|".SP.value(Themes::class, SITENAME);
+      $result = value(Themes::class, SITENAME).SP."-".SP.value(Themes::class, SITESLOGAN);
 
       if (null !== value(Themes::class, PAGENAME)) {
         $result = value(Themes::class, PAGENAME).SP."|".SP.$result;
