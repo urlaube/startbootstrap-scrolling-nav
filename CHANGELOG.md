@@ -6,7 +6,7 @@
 
 ### Bugfixes
 * improved default title
-* only execute handler when the theme is active
+* only execute handlers when the theme is active
 
 ## 0.1a12 (19.10.2018)
 ### Features

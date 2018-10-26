@@ -296,24 +296,27 @@
     public static function css() {
      $result = false;
 
-      $metadata = static::parseUriCss(relativeuri());
-      if (null !== $metadata) {
-        // check if the URI is correct
-        $fixed = static::getUriCss($metadata);
-        if (0 !== strcmp(value(Main::class, URI), $fixed)) {
-          relocate($fixed, false, true);
+      // only proceed when this is the active theme
+      if (0 === strcasecmp(static::class, value(Main::class, THEMENAME))) {
+        $metadata = static::parseUriCss(relativeuri());
+        if (null !== $metadata) {
+          // check if the URI is correct
+          $fixed = static::getUriCss($metadata);
+          if (0 !== strcmp(value(Main::class, URI), $fixed)) {
+            relocate($fixed, false, true);
 
-          // we handled this page
-          $result = true;
-        } else {
-          // preset handler configuration
-          static::configureCss();
+            // we handled this page
+            $result = true;
+          } else {
+            // preset handler configuration
+            static::configureCss();
 
-          // generate the CSS file output
-          require_once(__DIR__.DS."startbootstrap-scrolling-nav.css.php");
+            // generate the CSS file output
+            require_once(__DIR__.DS."startbootstrap-scrolling-nav.css.php");
 
-          // we handled this page
-          $result = true;
+            // we handled this page
+            $result = true;
+          }
         }
       }
 
