@@ -7,6 +7,7 @@
 ### Bugfixes
 * improved default title
 * only execute handlers when the theme is active
+* modified the handler so that redirect which correct the URI still retain the query string
 
 ## 0.1a12 (19.10.2018)
 ### Features
