@@ -21,8 +21,12 @@
     <meta name="description" content="<?= html(value(Themes::class, DESCRIPTION)) ?>">
     <meta name="keywords" content="<?= html(value(Themes::class, KEYWORDS)) ?>">
 
+<?php
+  if (null !== value(Themes::class, CANONICAL)) {
+?>
     <link rel="canonical" href="<?= html(value(Themes::class, CANONICAL)) ?>">
 <?php
+  }
   if (null !== value(Themes::class, FAVICON)) {
 ?>
     <link rel="shortcut icon" type="image/x-icon" href="<?= html(value(Themes::class, FAVICON)) ?>">
