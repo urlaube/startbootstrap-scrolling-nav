@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a13
+    @version 0.1a14
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -42,23 +42,8 @@
         $cachable = true;
 
         $name = value($metadata, static::NAME);
-        $path = trail(USER_CONTENT_PATH.implode(DS, array_filter(explode(US, $name))), DS);
 
-        $result = FilePlugin::loadContentDir($path, false,
-                                             function ($content) {
-                                               $result = null;
-
-                                               // check that $content is not hidden
-                                               if (!istrue(value($content, HIDDEN))) {
-                                                 // check that $content is not a relocation
-                                                 if (null === value($content, RELOCATE)) {
-                                                   $result = $content;
-                                                 }
-                                               }
-
-                                               return $result;
-                                             },
-                                             false);
+        $result = callcontent($name, false, false, null);
       }
 
       return $result;
