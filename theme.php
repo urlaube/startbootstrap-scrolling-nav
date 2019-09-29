@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.1a14
+    @version 0.1a15
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -43,7 +43,7 @@
 
         $name = value($metadata, static::NAME);
 
-        $result = callcontent($name, false, false, null);
+        $result = callcontent($name, true, false, null);
       }
 
       return $result;
