@@ -215,7 +215,7 @@ a:hover {
 
 .footer-section {
   background     : <?= html(value(Themes::class, "dark_color")) ?> !important;
-  color          : #eeeeee !important;
+  color          : #eee !important;
   padding-bottom : 50px !important;
   padding-top    : 50px !important;
 }
