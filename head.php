@@ -89,7 +89,7 @@
     $id    = StartBootstrapScrollingNav::cleanString($title);
 ?>
             <li>
-              <a class="page-scroll" href="#<?= html($id) ?>"><?= html($title) ?></a>
+              <a class="page-scroll" href="#<?= html($id) ?>" title="<?= html($title) ?>"><?= html($title) ?></a>
             </li>
 <?php
   }

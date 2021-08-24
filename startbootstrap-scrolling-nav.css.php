@@ -87,23 +87,41 @@ html {
   border-color : <?= html(value(Themes::class, "dark_color")) ?>;
 }
 
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav>li>a {
-  color : #eeeeee;
+.navbar-default .navbar-brand:before,
+.navbar-default .navbar-nav>li>a:before {
+    content     : attr(title);
+    display     : block;
+    font-weight : bold;
+    height      : 0;
+    overflow    : hidden;
+    visibility  : hidden;
 }
 
+.navbar-default .navbar-brand,
 .navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>li>a:focus {
+  color       : #fff;
+  font-weight : normal;
+}
+
 .navbar-default .navbar-brand:hover,
-.navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li>a:hover {
-  color : #bbbbbb;
+  color       : #fff;
+  font-weight : bold;
 }
 
 .navbar-default .navbar-nav>.active>a,
-.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:focus {
+  background  : <?= html(value(Themes::class, "light_color")) ?>;
+  color       : #333;
+  font-weight : normal;
+}
+
 .navbar-default .navbar-nav>.active>a:hover {
-  background : <?= html(value(Themes::class, "light_color")) ?>;
-  color      : #111111;
+  background  : <?= html(value(Themes::class, "light_color")) ?>;
+  color       : #333;
+  font-weight : bold;
 }
 
 section h1 {
@@ -115,7 +133,7 @@ section h2 a,
 section h3 a,
 section h4 a,
 section h5 a {
-  color : #000000;
+  color : #333;
 }
 
 section h1 a:focus,
@@ -172,11 +190,11 @@ a {
 
 a:focus,
 a:hover {
-  color : #000000;
+  color : #333;
 }
 
 .empty-section {
-  background     : #ffffff;
+  background     : #fff;
   padding-bottom : 50px;
   padding-top    : 50px;
 }
@@ -221,7 +239,7 @@ a:hover {
 }
 
 .uneven-section {
-  background     : #ffffff;
+  background     : #fff;
   padding-bottom : 75px;
   padding-top    : 75px;
 }
