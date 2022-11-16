@@ -209,8 +209,16 @@ a:hover {
   float : left;
 }
 
+img.float-left {
+  padding-right : 25px;
+}
+
 .float-right {
   float : right;
+}
+
+img.float-right {
+  padding-left : 25px;
 }
 
 .footer-section {
@@ -242,4 +250,13 @@ a:hover {
   background     : #fff;
   padding-bottom : 75px;
   padding-top    : 75px;
+}
+
+.panel-center {
+  display         : flex;
+  justify-content : center;
+}
+
+.panel-transparent {
+  background : none;
 }

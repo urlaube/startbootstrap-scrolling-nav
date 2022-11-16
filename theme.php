@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.2a0
+    @version 0.3a0
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -280,7 +280,13 @@
     // SOURCECODE HELPER FUNCTION
 
     public static function cleanString($string) {
-      return preg_replace('@[^0-9a-z]@', '', strtolower($string));
+      $result = $string;
+
+      if (is_string($result)) {
+        $result = preg_replace('@[^0-9a-z]@', '', strtolower($result));
+      }
+
+      return $result;
     }
 
     // RUNTIME FUNCTIONS

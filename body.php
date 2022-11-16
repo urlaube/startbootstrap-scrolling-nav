@@ -9,9 +9,13 @@
     </section>
 <?php
   // iterate through the content entries
-  $even = false;
+  $counter = 0;
+  $even    = false;
   foreach (value(Main::class, CONTENT) as $content_item) {
-    // chose alternating CSS class
+    // increment section counter
+    $counter++;
+
+    // choose alternating CSS class
     if ($even) {
       $class = "even-section";
     } else {
@@ -22,13 +26,22 @@
     $content = value($content_item, CONTENT).NL;
     $title   = value($content_item, TITLE);
     $id      = StartBootstrapScrollingNav::cleanString($title);
+    if (null === $id) {
+      $id = "section-$counter";
+    }
 ?>
     <!-- <?= html($title) ?> Section -->
     <section id="<?= html($id) ?>" class="<?= html($class) ?>">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
+<?php
+    if (null !== $title) {
+?>
             <h1><?= html($title) ?></h1>
+<?php
+    }
+?>
 <?= $content ?>
           </div>
         </div>

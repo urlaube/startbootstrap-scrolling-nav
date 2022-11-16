@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3a0 (16.11.2022)
+### Bugfixes
+* fix notices introduced with PHP 8.0
+* better handle empty title field
+* slightly improve CSS
+
 ## 0.2a0 (24.08.2021)
 ### Bugfixes
 * pagination now has correct colours

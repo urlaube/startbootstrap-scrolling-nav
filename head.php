@@ -84,14 +84,24 @@
             </li>
 <?php
   // iterate through the content entries to generate the link bar
+  $counter = 0;
   foreach (value(Main::class, CONTENT) as $content_item) {
+    // increment section counter
+    $counter++;
+
     $title = value($content_item, TITLE);
     $id    = StartBootstrapScrollingNav::cleanString($title);
+    if (null === $id) {
+      $id = "section-$counter";
+    }
+
+    if (null !== $title) {
 ?>
             <li>
               <a class="page-scroll" href="#<?= html($id) ?>" title="<?= html($title) ?>"><?= html($title) ?></a>
             </li>
 <?php
+    }
   }
 ?>
           </ul>
