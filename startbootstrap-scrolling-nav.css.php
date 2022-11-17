@@ -159,6 +159,7 @@ section ul {
   margin : 10px 0 10px 0;
 }
 
+/*
 section div.panel,
 section h1,
 section h2,
@@ -171,6 +172,7 @@ section ol,
 section ul {
   overflow-wrap : break-word;
 }
+*/
 
 section pre code {
   white-space : pre;
@@ -210,7 +212,8 @@ a:hover {
 }
 
 img.float-left {
-  padding-right : 25px;
+  padding-bottom : 25px;
+  padding-right  : 25px;
 }
 
 .float-right {
@@ -218,7 +221,8 @@ img.float-left {
 }
 
 img.float-right {
-  padding-left : 25px;
+  padding-bottom : 25px;
+  padding-left   : 25px;
 }
 
 .footer-section {
