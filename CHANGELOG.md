@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4a1 (29.12.2023)
+### Bugfixes
+* fix translation bug
+
 ## 0.4a0 (29.12.2023)
 ### Features
 * support custom CSS through the `custom_css` configuration value

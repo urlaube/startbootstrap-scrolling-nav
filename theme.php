@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.4a0
+    @version 0.4a1
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -223,17 +223,17 @@
             if ((null !== value($metadata, ArchiveHandler::DAY)) ||
                 (null !== value($metadata, ArchiveHandler::MONTH)) ||
                 (null !== value($metadata, ArchiveHandler::YEAR))) {
-              $result = t("Archiv", StartBootstrapBlogHome::class).COL.SP;
+              $result = t("Archiv", StartBootstrapScrollingNav::class).COL.SP;
 
               $parts = [];
               if (null !== value($metadata, ArchiveHandler::DAY)) {
-                $parts[] .= t("Tag", StartBootstrapBlogHome::class).SP.value($metadata, ArchiveHandler::DAY);
+                $parts[] .= t("Tag", StartBootstrapScrollingNav::class).SP.value($metadata, ArchiveHandler::DAY);
               }
               if (null !== value($metadata, ArchiveHandler::MONTH)) {
-                $parts[] .= t("Monat", StartBootstrapBlogHome::class).SP.value($metadata, ArchiveHandler::MONTH);
+                $parts[] .= t("Monat", StartBootstrapScrollingNav::class).SP.value($metadata, ArchiveHandler::MONTH);
               }
               if (null !== value($metadata, ArchiveHandler::YEAR)) {
-                $parts[] .= t("Jahr", StartBootstrapBlogHome::class).SP.value($metadata, ArchiveHandler::YEAR);
+                $parts[] .= t("Jahr", StartBootstrapScrollingNav::class).SP.value($metadata, ArchiveHandler::YEAR);
               }
 
               $result .= implode(DP.SP, $parts);
@@ -241,15 +241,15 @@
             break;
 
           case AuthorHandler::class:
-            $result = t("Autor", StartBootstrapBlogHome::class).COL.SP.value($metadata, AUTHOR);
+            $result = t("Autor", StartBootstrapScrollingNav::class).COL.SP.value($metadata, AUTHOR);
             break;
 
           case CategoryHandler::class:
-            $result = t("Kategorie", StartBootstrapBlogHome::class).COL.SP.value($metadata, CATEGORY);
+            $result = t("Kategorie", StartBootstrapScrollingNav::class).COL.SP.value($metadata, CATEGORY);
             break;
 
           case SearchHandler::class:
-            $result = t("Suche", StartBootstrapBlogHome::class).COL.SP.strtr(value($metadata, SearchHandler::SEARCH), DOT, SP);
+            $result = t("Suche", StartBootstrapScrollingNav::class).COL.SP.strtr(value($metadata, SearchHandler::SEARCH), DOT, SP);
             break;
         }
       }
