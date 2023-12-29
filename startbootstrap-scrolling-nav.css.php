@@ -264,3 +264,5 @@ img.float-right {
 .panel-transparent {
   background : none;
 }
+
+<?= html(value(Themes::class, "custom_css")) ?>

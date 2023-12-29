@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.3a0
+    @version 0.4a0
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -100,6 +100,7 @@
     // HELPER FUNCTIONS
 
     protected static function configureCss() {
+      Themes::preset("custom_css",  "");
       Themes::preset("dark_color",  "#666");
       Themes::preset("light_color", "#ccc");
     }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4a0 (29.12.2023)
+### Features
+* support custom CSS through the `custom_css` configuration value
+
 ## 0.3a0 (16.11.2022)
 ### Bugfixes
 * fix notices introduced with PHP 8.0
