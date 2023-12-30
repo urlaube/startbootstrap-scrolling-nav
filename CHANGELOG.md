@@ -1,12 +1,16 @@
 # Changelog
 
+## 0.5a0 (30.12.2023)
+### Features
+* support overwriting the menu through the `MENU` configuration value
+
 ## 0.4a1 (29.12.2023)
 ### Bugfixes
 * fix translation bug
 
 ## 0.4a0 (29.12.2023)
 ### Features
-* support custom CSS through the `custom_css` configuration value
+* support custom CSS through the `"custom_css"` configuration value
 
 ## 0.3a0 (16.11.2022)
 ### Bugfixes

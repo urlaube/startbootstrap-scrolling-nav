@@ -82,6 +82,20 @@ You can set the URL of an image file that is used as a website logo:
 Themes::set(LOGO, null);
 ```
 
+### Menu
+You can set the content of the site's menu:
+```
+Themes::set(MENU, null);
+```
+
+The menu content has to be set as an array containing associative arrays for each element:
+```
+Themes::set(MENU, [[TITLE => "Linktext",   URI => "https://example.com/"],
+                   [TITLE => "Linktext 2", URI => "https://example.net/"]]);
+```
+
+If this value is not set then the menu will be auto-generated from the content.
+
 ### Pagename
 You can overwrite the auto-generated page name that is used as an H1 headline:
 ```

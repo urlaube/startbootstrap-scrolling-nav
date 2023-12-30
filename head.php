@@ -83,24 +83,44 @@
               <a class="page-scroll" href="#page-top"></a>
             </li>
 <?php
-  // iterate through the content entries to generate the link bar
-  $counter = 0;
-  foreach (value(Main::class, CONTENT) as $content_item) {
-    // increment section counter
-    $counter++;
+  $menu = value(Themes::class, MENU);
 
-    $title = value($content_item, TITLE);
-    $id    = StartBootstrapScrollingNav::cleanString($title);
-    if (null === $id) {
-      $id = "section-$counter";
+  // generate the menu from the content
+  if (null === $menu) {
+    // generate the menu from the content
+    $counter = 0;
+    foreach (value(Main::class, CONTENT) as $content_item) {
+      // increment section counter
+      $counter++;
+
+      $title = value($content_item, TITLE);
+      $id    = StartBootstrapScrollingNav::cleanString($title);
+      if (null === $id) {
+        $id = "section-$counter";
+      }
+
+      // initialize the menu array
+      if (null === $menu) {
+        $menu = [];
+      }
+
+      // set the menu item
+      $menu[] = [TITLE => $title, URI => "#$id"];
     }
+  }
 
-    if (null !== $title) {
+  // iterate through the menu entries to generate the link bar
+  if (is_array($menu)) {
+    foreach ($menu as $menu_item) {
+      if (is_array($menu_item)) {
+        if (isset($menu_item[TITLE]) && isset($menu_item[URI])) {
 ?>
-            <li>
-              <a class="page-scroll" href="#<?= html($id) ?>" title="<?= html($title) ?>"><?= html($title) ?></a>
+            <li<?= $liclass ?>>
+              <a class="page-scroll" href="<?= html($menu_item[URI]) ?>" title="<?= html($menu_item[TITLE]) ?>"><?= html($menu_item[TITLE]) ?></a>
             </li>
 <?php
+        }
+      }
     }
   }
 ?>
