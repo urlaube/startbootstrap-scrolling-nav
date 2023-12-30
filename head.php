@@ -114,8 +114,21 @@
     foreach ($menu as $menu_item) {
       if (is_array($menu_item)) {
         if (isset($menu_item[TITLE]) && isset($menu_item[URI])) {
+          // try to clean up the URI if possible
+          $uri = parse_url($menu_item[URI]);
+          if (is_array($uri)) {
+            // check if this is only a path and a fragment
+            if ((2 === count($uri)) &&
+                array_key_exists("path", $uri) &&
+                array_key_exists("fragment", $uri)) {
+              // check if this is the current URI
+              if (0 === strcmp($uri["path"], value(Main::class, URI))) {
+                $menu_item[URI] = "#".$uri["fragment"];
+              }
+            }
+          }
 ?>
-            <li<?= $liclass ?>>
+            <li>
               <a class="page-scroll" href="<?= html($menu_item[URI]) ?>" title="<?= html($menu_item[TITLE]) ?>"><?= html($menu_item[TITLE]) ?></a>
             </li>
 <?php
