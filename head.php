@@ -60,7 +60,42 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand page-scroll" href="#empty">
+<?php
+  $logourl = value(Themes::class, "logo_url");
+  if (null !== $logourl) {
+    // try to clean up the URI if possible
+    $uri = parse_url($logourl);
+    if (is_array($uri)) {
+      // check if this is only a path and a fragment
+      if ((2 === count($uri)) &&
+          array_key_exists("path", $uri) &&
+          array_key_exists("fragment", $uri)) {
+        // check if this is the current URI
+        if (0 === strcmp($uri["path"], value(Main::class, URI))) {
+          $logourl = "#".$uri["fragment"];
+        }
+      }
+    }
+
+    // check if this is the current page
+    $uri = parse_url($logourl);
+    if (is_array($uri)) {
+      // check if this is only a path
+      if ((1 === count($uri)) &&
+          array_key_exists("path", $uri)) {
+        if (0 === strcmp($uri["path"], value(Main::class, URI))) {
+          // just use the default
+          $logourl = null;
+        }
+      }
+    }
+  }
+
+  if (null === $logourl) {
+    $logourl = "#page-top";
+  }
+?>
+          <a class="navbar-brand page-scroll" href="<?= html($logourl) ?>">
 <?php
   if (null !== value(Themes::class, LOGO)) {
 ?>

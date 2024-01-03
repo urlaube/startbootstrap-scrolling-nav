@@ -118,6 +118,7 @@
     protected static function configureTheme() {
       // individual theme configuration
       Themes::preset("copyright_html", null);
+      Themes::preset("logo_url",       null);
 
       // recommended theme configuration
       Themes::preset(AUTHOR,      static::getDefaultAuthor());

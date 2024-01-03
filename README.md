@@ -84,6 +84,12 @@ You can set the URL of an image file that is used as a website logo:
 Themes::set(LOGO, null);
 ```
 
+### Logo linkURL
+You can set the target URL of the logo:
+```
+Themes::set("logo_url", null);
+```
+
 ### Menu
 You can set the content of the site's menu:
 ```

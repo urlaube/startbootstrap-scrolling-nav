@@ -6,6 +6,7 @@
 * the theme now supports multiple pages by creating sub-folders with content files
 * the active menu item is now highlighted if a custom menu is configured and the item URI does not contain a #fragment
 * support hyphenated section names
+* the target URL of the URL can now be overwritten
 
 ## 0.5a0 (30.12.2023)
 ### Features
