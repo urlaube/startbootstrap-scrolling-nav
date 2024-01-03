@@ -294,7 +294,7 @@
       $result = $string;
 
       if (is_string($result)) {
-        $result = preg_replace('@[^0-9a-z]@', '', strtolower($result));
+        $result = preg_replace('@[^0-9a-z\-]@', '', strtolower($result));
       }
 
       return $result;

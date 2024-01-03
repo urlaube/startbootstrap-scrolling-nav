@@ -5,6 +5,7 @@
 * sections can now be given a specific section #fragment by setting the `Section:` value in the content file
 * the theme now supports multiple pages by creating sub-folders with content files
 * the active menu item is now highlighted if a custom menu is configured and the item URI does not contain a #fragment
+* support hyphenated section names
 
 ## 0.5a0 (30.12.2023)
 ### Features
