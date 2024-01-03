@@ -1,6 +1,8 @@
 # StartBootstrap-Scrolling-Nav theme
 The StartBootstrap-Scrolling-Nav theme is a single-page theme for [Urlaube](https://github.com/urlaube/urlaube) that is based on the [Scrolling-Nav theme](https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/tree/v3.3.7) created by [Start Bootstrap](https://startbootstrap.com/).
 
+You can create multiple pages by putting one or more content files in sub-folders.
+
 ## Installation
 Place the folder containing the theme into your themes directory located at `./user/themes/`.
 
@@ -119,3 +121,8 @@ You can overwrite the auto-generated title header:
 ```
 Themes::set(TITLE, static::getDefaultTitle());
 ```
+
+## Usage
+
+The theme creates a single-page layout from the content files in the `./user/content/` folder and auto-generates the menu entries from the titles of the different content files. Each session gets its own #fragment URL from the cleaned-up `Title:` value in the content file. You can overwrite the auto-generated #fragment URL by setting the `Section:` value in the content file.
+

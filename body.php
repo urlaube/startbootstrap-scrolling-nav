@@ -25,7 +25,10 @@
 
     $content = value($content_item, CONTENT).NL;
     $title   = value($content_item, TITLE);
-    $id      = StartBootstrapScrollingNav::cleanString($title);
+    $id      = StartBootstrapScrollingNav::cleanString(value($content_item, "section"));
+    if (null === $id) {
+      $id = StartBootstrapScrollingNav::cleanString($title);
+    }
     if (null === $id) {
       $id = "section-$counter";
     }

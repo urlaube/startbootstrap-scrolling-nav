@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.5a0
+    @version 0.6a0
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -43,7 +43,17 @@
 
         $name = value($metadata, static::NAME);
 
-        $result = callcontent($name, true, false, null);
+        $result = callcontent($name, true, false,
+                              function ($content) {
+                                // filter out all results that are located in sub-folder
+                                if (0 === strpos(value($content, URI), value(Main::class, URI))) {
+                                  $uri = notrail(substr(value($content, URI), strlen(value(Main::class, URI))), US);
+                                  if (false !== strpos($uri, US)) {
+                                    $content = null;
+                                  }
+                                }
+                                return $content;
+                              });
       }
 
       return $result;

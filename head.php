@@ -94,7 +94,10 @@
       $counter++;
 
       $title = value($content_item, TITLE);
-      $id    = StartBootstrapScrollingNav::cleanString($title);
+      $id    = StartBootstrapScrollingNav::cleanString(value($content_item, "section"));
+      if (null === $id) {
+        $id = StartBootstrapScrollingNav::cleanString($title);
+      }
       if (null === $id) {
         $id = "section-$counter";
       }
@@ -127,9 +130,23 @@
               }
             }
           }
+
+          // check if this is the active menu item
+          $aclass = "";
+          $uri    = parse_url($menu_item[URI]);
+          if (is_array($uri)) {
+            // check if this is only a path
+            if ((1 === count($uri)) &&
+                array_key_exists("path", $uri)) {
+              if (0 === strcmp($uri["path"], value(Main::class, URI))) {
+                $aclass = " active-item";
+              }
+            }
+          }
+
 ?>
             <li>
-              <a class="page-scroll" href="<?= html($menu_item[URI]) ?>" title="<?= html($menu_item[TITLE]) ?>"><?= html($menu_item[TITLE]) ?></a>
+              <a class="page-scroll<?= $aclass ?>" href="<?= html($menu_item[URI]) ?>" title="<?= html($menu_item[TITLE]) ?>"><?= html($menu_item[TITLE]) ?></a>
             </li>
 <?php
         }

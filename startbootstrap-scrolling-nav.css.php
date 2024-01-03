@@ -195,6 +195,11 @@ a:hover {
   color : #333;
 }
 
+.active-item {
+  background : <?= html(value(Themes::class, "light_color")) ?> !important;
+  color      : #333 !important;
+}
+
 .empty-section {
   background     : #fff;
   padding-bottom : 50px;
