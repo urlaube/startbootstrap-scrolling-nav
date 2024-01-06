@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.6a0
+    @version 0.7a0
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -110,7 +110,7 @@
     // HELPER FUNCTIONS
 
     protected static function configureCss() {
-      Themes::preset("custom_css",  "");
+      Themes::preset(CSS,           "");
       Themes::preset("dark_color",  "#666");
       Themes::preset("light_color", "#ccc");
     }
@@ -260,7 +260,7 @@
             break;
 
           case SearchHandler::class:
-            $result = t("Suche", StartBootstrapScrollingNav::class).COL.SP.strtr(value($metadata, SearchHandler::SEARCH), DOT, SP);
+            $result = t("Suche", StartBootstrapScrollingNav::class).COL.SP.strtr(value($metadata, SEARCH), DOT, SP);
             break;
         }
       }

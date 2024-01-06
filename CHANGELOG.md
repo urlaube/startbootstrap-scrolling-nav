@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7a0 (06.01.2024)
+### Features
+* support the recommended `CSS` configuration instead of `"custom_css"`
+
+### Bugfixes
+* use the correct `SEARCH` constant instead of `SearchHandler::SEARCH`
+
 ## 0.6a0 (03.01.2024)
 ### Features
 * sections can now be given a specific section #fragment by setting the `Section:` value in the content file
