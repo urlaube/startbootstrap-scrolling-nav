@@ -270,4 +270,4 @@ img.float-right {
   background : none;
 }
 
-<?= html(value(Themes::class, "custom_css")) ?>
+<?= html(value(Themes::class, CSS)) ?>
