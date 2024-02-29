@@ -29,7 +29,7 @@
   }
   if (null !== value(Themes::class, FAVICON)) {
 ?>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= html(value(Themes::class, FAVICON)) ?>">
+    <link rel="icon" type="<?= html(mime_content_type(uri2path(value(Themes::class, FAVICON)))) ?>" href="<?= html(value(Themes::class, FAVICON)) ?>">
 <?php
   }
 ?>
