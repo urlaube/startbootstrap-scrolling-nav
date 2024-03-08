@@ -16,8 +16,11 @@
 */
 
 body {
-  height : 100%;
-  width  : 100%;
+  display        : flex;
+  flex-direction : column;
+  height         : 100%;
+  min-height     : 100vh;
+  width          : 100%;
 }
 
 html {
@@ -233,6 +236,7 @@ img.float-right {
 .footer-section {
   background     : <?= html(value(Themes::class, "dark_color")) ?> !important;
   color          : #eee !important;
+  margin-top     : auto !important;
   padding-bottom : 50px !important;
   padding-top    : 50px !important;
 }
