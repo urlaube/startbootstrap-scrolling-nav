@@ -203,6 +203,10 @@ a:hover {
   color      : #333 !important;
 }
 
+.container {
+  max-width : 95vw;
+}
+
 .empty-section {
   background     : #fff;
   padding-bottom : 50px;

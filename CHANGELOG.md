@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7a3 (28.04.2024)
+### Bugfixes
+* prevent PRE overflows
+
 ## 0.7a2 (08.03.2024)
 ### Feature
 * stick the footer to the bottom of the viewport

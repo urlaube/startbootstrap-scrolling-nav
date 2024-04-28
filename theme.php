@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.7a2
+    @version 0.7a3
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
