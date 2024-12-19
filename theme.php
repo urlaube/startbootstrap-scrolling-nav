@@ -7,7 +7,7 @@
     theme.
 
     @package urlaube\startbootstrap-scrolling-nav
-    @version 0.7a3
+    @version 0.7a4
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -269,10 +269,27 @@
     }
 
     protected static function getDefaultTitle() {
-      $result = value(Themes::class, SITENAME).SP."-".SP.value(Themes::class, SITESLOGAN);
+      $result = "";
 
+      // prepare the site title
+      if (null !== value(Themes::class, SITENAME)) {
+        $result = value(Themes::class, SITENAME);
+      }
+      if (null !== value(Themes::class, SITESLOGAN)) {
+        // only use separator if the result already contains text
+        if (0 < strlen($result)) {
+          $result = $result.SP."-".SP;
+        }
+        $result = $result.value(Themes::class, SITESLOGAN);
+      }
+
+      // prepare the page title
       if (null !== value(Themes::class, PAGENAME)) {
-        $result = value(Themes::class, PAGENAME).SP."|".SP.$result;
+        // only use separator if the result already contains text
+        if (0 < strlen($result)) {
+          $result = SP."|".SP.$result;
+        }
+        $result = value(Themes::class, PAGENAME).$result;
       } else {
         // handle errors and pages
         if ((ErrorHandler::class === Handlers::getActive()) ||
@@ -280,7 +297,11 @@
           // get the first entry of the content entries
           if (0 < count(value(Main::class, CONTENT))) {
             if (value(Main::class, CONTENT)[0]->isset(TITLE)) {
-              $result = value(value(Main::class, CONTENT)[0], TITLE).SP."|".SP.$result;
+              // only use separator if the result already contains text
+              if (0 < strlen($result)) {
+                $result = SP."|".SP.$result;
+              }
+              $result = value(value(Main::class, CONTENT)[0], TITLE).$result;
             }
           }
         }

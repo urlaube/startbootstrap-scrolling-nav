@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7a4 (19.12.2024)
+### Feature
+* improve default title tag generation
+
 ## 0.7a3 (28.04.2024)
 ### Bugfixes
 * prevent PRE overflows
