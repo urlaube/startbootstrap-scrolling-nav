@@ -84,7 +84,7 @@ You can set the URL of an image file that is used as a website logo:
 Themes::set(LOGO, null);
 ```
 
-### Logo linkURL
+### Logo link URL
 You can set the target URL of the logo:
 ```
 Themes::set("logo_url", null);
