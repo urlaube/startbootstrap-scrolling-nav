@@ -128,7 +128,7 @@
 
 ## 0.1a3 (11.05.2018)
 ### Features
-* use USER_CONTENT_PATH instead of custom handler variable
+* use `USER_CONTENT_PATH` instead of custom handler variable
 * more comments
 ### Security
 * fixed html() calls
@@ -136,7 +136,7 @@
 
 ## 01.a2 (08.05.2018)
 ### Bugfixes
-* fixed issues with COPYRIGHT_HTML
+* fixed issues with `COPYRIGHT_HTML`
 
 ## 0.1a1 (08.05.2018)
 ### Features
