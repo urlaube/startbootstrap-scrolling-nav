@@ -130,5 +130,5 @@ Themes::set(TITLE, static::getDefaultTitle());
 
 ## Usage
 
-The theme creates a single-page layout from the content files in the `./user/content/` folder and auto-generates the menu entries from the titles of the different content files. Each session gets its own #fragment URL from the cleaned-up `Title:` value in the content file. You can overwrite the auto-generated #fragment URL by setting the `Section:` value in the content file.
+The theme creates a single-page layout from the content files in the `./user/content/` folder and auto-generates the menu entries from the titles of the different content files. Each section gets its own #fragment URL from the cleaned-up `Title:` value in the content file. You can overwrite the auto-generated #fragment URL by setting the `Section:` value in the content file.
 
