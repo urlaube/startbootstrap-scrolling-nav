@@ -153,7 +153,8 @@ section h5 a:hover {
 }
 
 section img {
-  margin : 0 10px 0 10px;
+  margin    : 0 0 10px;
+  max-width : 100%;
 }
 
 section li,

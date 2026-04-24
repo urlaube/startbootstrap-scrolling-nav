@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7a5 (24.04.2026)
+### Bugfixes
+* introduce image max-width
+
 ## 0.7a4 (19.12.2024)
 ### Feature
 * improve default title tag generation
